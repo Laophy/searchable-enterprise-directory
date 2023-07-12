@@ -11,10 +11,12 @@ num_rows = 1000
 
 #create the csv 
 output_file = "enterprise_directory.csv"
+json_file = "enterprise_directory.json"
 
 
 # generate data rows
 data_rows = []
+data = [] # row json data rows
 for i in range(1, num_rows+1):
     #generate random data for each column
     if i <=10:
@@ -36,6 +38,7 @@ for i in range(1, num_rows+1):
                               "IT Specialist","Data Architect"])
     work_location = random.choice(["Hartford", "St.Paul", "Phoenix", "Denver", "Boston"])
     salary = random.randint(65000,110000)
+    # for csv
     data_row = [
         emp_id,
         manager_id,
@@ -47,9 +50,21 @@ for i in range(1, num_rows+1):
         salary,
 
     ]
-
-    #a dds the data row to the list
+    # for json
+    record = {
+        "emp_id": emp_id,
+        "manager_id": manager_id,
+        "full_name": full_name,
+        "username": username,
+        "phone_number": phone_number,
+        "job_role": job_role,
+        "work_location": work_location,
+        "salary": salary
+    }
+    # adds the data row to the list
     data_rows.append(data_row)
+    # adds the record to the data
+    data.append(record)
 
 # writing data to the csv file
 with open(output_file,"w",newline="") as file:
@@ -59,6 +74,10 @@ with open(output_file,"w",newline="") as file:
          "work_location", "salary"]
     )
     writer.writerows(data_rows)
+
+# writing data to the json file
+with open(json_file,'w') as file:
+    json.dump({"employees": data},file,indent=4)
 
 print("Data generation complete!")
 
