@@ -3,10 +3,13 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 
-import TravBg from '../images/Hickok_1920_travelers22_d4_bunker_logo_18.jpg'
+import TravBg from '../images/trav_golf_2.jpg'
 
 export function ContactCard({ userData }) {
+    const theme = useTheme();
+
     const user = {
         emp_id: 1,
         manager_id: 1,
@@ -30,11 +33,12 @@ export function ContactCard({ userData }) {
                     sx={{
                         width: '100%',
                         height: '350px',
-                        borderRadius: 5,
+                        borderRadius: 2,
                         marginBottom: 5,
                         backgroundImage: `url(${TravBg})`,
                         backgroundPosition: 'center',
-                        backgroundPositionY: '600px'
+                        backgroundSize: 'cover',
+                        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px'
                     }}
                 />
                 <Box
@@ -62,52 +66,43 @@ export function ContactCard({ userData }) {
                         </Typography>
                     </Paper>
                 </Box>
-                <Typography variant="h2" style={{ paddingLeft: 20, textAlign: 'left' }}>
-                    Information
+                <Typography variant="h4" style={{ paddingLeft: 20, textAlign: 'left' }}>
+                    Contact Information
                 </Typography>
                 <Box
                     sx={{
                         width: '100%',
                         padding: 1,
-                        marginBottom: 10,
+                        marginBottom: 2,
                         display: 'inline-flex',
                         alignItems: 'center',
-                        justifyContent: 'flex-start'
+                        justifyContent: 'center'
                     }}
                 >
-                    <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%', minHeight: 150 }}>
-                        <Typography variant="h6" noWrap component="box" style={{ paddingLeft: 5 }}>
-                            Username
-                        </Typography>
-                        <br/>
-                        <Typography variant="p" noWrap component="box" style={{ paddingLeft: 5 }}>
-                            {user.username}
-                        </Typography>
-                    </Paper>
-                    <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%', minHeight: 150 }}>
+                    <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
                         <Typography variant="h6" noWrap component="box" style={{ paddingLeft: 5 }}>
                             Location
                         </Typography>
                         <br/>
-                        <Typography variant="p" noWrap component="box" style={{ paddingLeft: 5 }}>
+                        <Typography variant="p" noWrap component="box" style={{ color: theme.palette.primary.main }}>
                             {user.work_location}
                         </Typography>
                     </Paper>
-                    <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%', minHeight: 150 }}>
+                    <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
                         <Typography variant="h6" noWrap component="box" style={{ paddingLeft: 5 }}>
-                            Phone Number
+                            Phone
                         </Typography>
                         <br/>
-                        <Typography variant="p" noWrap component="box" style={{ paddingLeft: 5 }}>
+                        <Typography variant="p" noWrap component="box" style={{ color: theme.palette.primary.main }}>
                             {user.phone_number}
                         </Typography>
                     </Paper>
-                    <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%', minHeight: 150 }}>
+                    <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
                         <Typography variant="h6" noWrap component="box" style={{ paddingLeft: 5 }}>
                             Salary
                         </Typography>
                         <br/>
-                        <Typography variant="p" noWrap component="box" style={{ paddingLeft: 5 }}>
+                        <Typography variant="p" noWrap component="box" style={{ color: theme.palette.secondary.main }}>
                             ${user.salary}
                         </Typography>
                     </Paper>
