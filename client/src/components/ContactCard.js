@@ -14,7 +14,16 @@ export function ContactCard({ user, self }) {
 
     // Defualts
     if(!user) {
-        user = authState; // Self
+        user = {
+            emp_id: 0,
+            manager_id: 0,
+            full_name: 'Logged Out',
+            username: 'null',
+            phone_number: '(000) 000 0000',
+            job_role: 'N/A',
+            work_location: 'N/A',
+            salary: 0
+        }; 
     }else if (self) {
         user = authState
     }
@@ -55,11 +64,11 @@ export function ContactCard({ user, self }) {
                         src={user?.full_name}
                         sx={{ width: 124, height: 124 }}
                     />
-                    <Typography variant="h3" noWrap component="box" style={{ paddingLeft: 5 }}>
+                    <Typography variant="h3" style={{ paddingLeft: 5 }}>
                         {user?.full_name}
                     </Typography>
                     <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1 }}>
-                        <Typography variant="p" noWrap component="box" style={{ paddingLeft: 5 }}>
+                        <Typography variant="p" style={{ paddingLeft: 5 }}>
                             {user?.job_role}
                         </Typography>
                     </Paper>
@@ -79,29 +88,29 @@ export function ContactCard({ user, self }) {
                     }}
                 >
                     <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
-                        <Typography variant="h6" noWrap component="box" style={{ paddingLeft: 5 }}>
+                        <Typography variant="h6" style={{ paddingLeft: 5 }}>
                             Location
                         </Typography>
                         <br/>
-                        <Typography variant="p" noWrap component="box" style={{ color: theme.palette.primary.main }}>
+                        <Typography variant="p" style={{ color: theme.palette.primary.main }}>
                             {user?.work_location}
                         </Typography>
                     </Paper>
                     <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
-                        <Typography variant="h6" noWrap component="box" style={{ paddingLeft: 5 }}>
+                        <Typography variant="h6" style={{ paddingLeft: 5 }}>
                             Phone
                         </Typography>
                         <br/>
-                        <Typography variant="p" noWrap component="box" style={{ color: theme.palette.primary.main }}>
+                        <Typography variant="p" style={{ color: theme.palette.primary.main }}>
                             {user?.phone_number}
                         </Typography>
                     </Paper>
                     <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
-                        <Typography variant="h6" noWrap component="box" style={{ paddingLeft: 5 }}>
+                        <Typography variant="h6" style={{ paddingLeft: 5 }}>
                             Salary
                         </Typography>
                         <br/>
-                        <Typography variant="p" noWrap component="box" style={{ color: theme.palette.secondary.main }}>
+                        <Typography variant="p" style={{ color: theme.palette.secondary.main }}>
                             ${user?.salary}
                         </Typography>
                     </Paper>

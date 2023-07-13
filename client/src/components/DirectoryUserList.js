@@ -52,10 +52,10 @@ export function DirectoryUserList() {
                 const manager = users.find(emp => emp.emp_id === user.manager_id)
                 user.manager_name = manager?.full_name;
 
-                if(!user.manager_name)
+                if (!user.manager_name)
                     user.manager_name = 'Alan D. Schnitzer';
 
-                if(manager || user.manager_id === 0)
+                if (manager || user.manager_id === 0)
                     newUsers.push(user)
             })
             setUsers(newUsers)
@@ -70,21 +70,19 @@ export function DirectoryUserList() {
     }, [search])
 
     return (
-        <>
-            <div style={{ height: '100%', width: '100%' }}>
-                <TextField id="search-bar" label="Search Employee" variant="standard" sx={{ m: 1 }} onChange={(e) => setSearch(e.target.value)}/>
-                <DataGrid
-                    rows={filteredUsers}
-                    columns={columns}
-                    getRowId={(filteredUsers) => filteredUsers.emp_id}
-                    initialState={{
-                        pagination: {
-                            paginationModel: { page: 0, pageSize: 10 },
-                        },
-                    }}
-                    pageSizeOptions={[10, 50, 100]}
-                />
-            </div>
-        </>
+        <div style={{ height: '100%', width: '100%' }}>
+            <TextField id="search-bar" label="Search Employee" variant="standard" sx={{ m: 1 }} onChange={(e) => setSearch(e.target.value)} />
+            <DataGrid
+                rows={filteredUsers}
+                columns={columns}
+                getRowId={(filteredUsers) => filteredUsers.emp_id}
+                initialState={{
+                    pagination: {
+                        paginationModel: { page: 0, pageSize: 10 },
+                    },
+                }}
+                pageSizeOptions={[10, 50, 100]}
+            />
+        </div>
     )
 }

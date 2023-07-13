@@ -5,7 +5,7 @@ import { Sidebar } from './components/Sidebar';
 
 // Auth
 import { AuthContext, AuthContextProvider } from './context/AuthContext';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 import { MissingPage } from './pages/MissingPage';
 import { Overview } from './pages/account/Overview';
@@ -39,15 +39,6 @@ export default function App() {
   // Current user data
   const [authState, setAuthState] = useContext(AuthContext)
 
-  useEffect(() => {
-    setAuthState({
-      userIsLoggedin: true,
-      fName: 'Test first name',
-      lName: 'Test last name',
-      userName: 'TestUserName123'
-    });
-  }, [authState, setAuthState])
-
   return (
     <ThemeProvider theme={newTheme}>
       <Sidebar content={
@@ -60,7 +51,7 @@ export default function App() {
             <Route path='/account/dashboard' element={<Dashboard />} />
             <Route path='/account/overview' element={<Overview />} />
             <Route path='/account/job' element={<Job />} />
-            <Route path='/account/contact' element={<Contact self/>} />
+            <Route path='/account/contact' element={<Contact self />} />
             <Route path='/account/compensation' element={<Compensation />} />
             <Route path='/account/pay' element={<Pay />} />
 
@@ -70,7 +61,6 @@ export default function App() {
             <Route path='/users/:id' element={<User />} />
           </Routes>
         </AuthContextProvider>
-
       } />
     </ThemeProvider>
   );

@@ -1,6 +1,6 @@
 import Typography from '@mui/material/Typography';
 import { AuthContext } from '../context/AuthContext';
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 
 import TextField from '@mui/material/TextField';
 
@@ -12,7 +12,7 @@ export function Login() {
     const [loginFunctions, setloginFunctions] = useState(useAuthContext)
     const [userID, setUserID] = useState(0)
 
-    const onLogin = () => {
+    function onLogin () {
         try {
             fetch(`http://localhost:4000/api/users/${+userID}`, {method: 'GET', mode: "cors", headers: {"Content-Type": "application/json"}})
                 .then(res => res.json())
@@ -22,23 +22,23 @@ export function Login() {
         }
     }
 
-    const onLogout = () => {
+    function onLogout () {
         loginFunctions.logout()
     }
 
-    useEffect(() => {
-        console.log(authState)
-    }, [authState])
+    // useEffect(() => {
+    //     console.log(authState)
+    // }, [authState])
 
 
     return (
         <div style={{ textAlign: 'center', width: '100%', marginTop: '10vh' }}>
             {authState?.userIsLoggedin ?
-                <>
+                <div>
                     <Typography variant="h3" noWrap component="div">
                         <Button onClick={() => onLogout()}>Logout {authState.full_name}</Button>
                     </Typography>
-                </>
+                </div>
                 :
                 <div>
                     <Typography variant="h2" noWrap component="div">
