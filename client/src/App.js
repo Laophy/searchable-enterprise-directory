@@ -13,6 +13,7 @@ import { Pay } from './pages/account/Pay';
 
 import { Login } from './pages/Login';
 import { Directory } from './pages/users/Directory';
+import { User } from './pages/users/User';
 
 const newTheme = createTheme({
   palette: {
@@ -49,6 +50,8 @@ export default function App() {
             <Route path='/users/directory' element={<Directory />} />
             <Route path='/account/login' element={<Login />} />
             <Route path='/account/logout' element={<h1>Logout Page</h1>} />
+
+            <Route path='/users/:id' element={<User />} />
           </Routes>
       } />
     </ThemeProvider>

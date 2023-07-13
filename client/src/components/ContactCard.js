@@ -7,18 +7,21 @@ import { useTheme } from '@mui/material/styles';
 
 import TravBg from '../images/trav_golf_2.jpg'
 
-export function ContactCard({ userData }) {
+export function ContactCard({ user }) {
     const theme = useTheme();
 
-    const user = {
-        emp_id: 1,
-        manager_id: 1,
-        full_name: 'John Adams',
-        username: 'Test01',
-        phone_number: '(262)225-9056',
-        job_role: 'Software Engineer',
-        work_location: 'St.Paul',
-        salary: '65000'
+    // Defualts
+    if(!user) {
+        user = {
+            emp_id: 0,
+            manager_id: 0,
+            full_name: 'Test User',
+            username: 'Test01',
+            phone_number: '(999) 123-4567',
+            job_role: 'Software Engineer',
+            work_location: 'St.Paul',
+            salary: '70000'
+        }
     }
 
     return (
@@ -53,16 +56,16 @@ export function ContactCard({ userData }) {
                     }}
                 >
                     <Avatar
-                        alt={user.full_name}
-                        src={`https://i.imgur.com/2UfIODa.png`}
+                        alt={user?.full_name}
+                        src={user?.full_name}
                         sx={{ width: 124, height: 124 }}
                     />
                     <Typography variant="h3" noWrap component="box" style={{ paddingLeft: 5 }}>
-                        {user.full_name}
+                        {user?.full_name}
                     </Typography>
                     <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1 }}>
                         <Typography variant="p" noWrap component="box" style={{ paddingLeft: 5 }}>
-                            {user.job_role}
+                            {user?.job_role}
                         </Typography>
                     </Paper>
                 </Box>
@@ -76,7 +79,8 @@ export function ContactCard({ userData }) {
                         marginBottom: 2,
                         display: 'inline-flex',
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        textAlign: 'center'
                     }}
                 >
                     <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
@@ -85,7 +89,7 @@ export function ContactCard({ userData }) {
                         </Typography>
                         <br/>
                         <Typography variant="p" noWrap component="box" style={{ color: theme.palette.primary.main }}>
-                            {user.work_location}
+                            {user?.work_location}
                         </Typography>
                     </Paper>
                     <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
@@ -94,7 +98,7 @@ export function ContactCard({ userData }) {
                         </Typography>
                         <br/>
                         <Typography variant="p" noWrap component="box" style={{ color: theme.palette.primary.main }}>
-                            {user.phone_number}
+                            {user?.phone_number}
                         </Typography>
                     </Paper>
                     <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
@@ -103,7 +107,7 @@ export function ContactCard({ userData }) {
                         </Typography>
                         <br/>
                         <Typography variant="p" noWrap component="box" style={{ color: theme.palette.secondary.main }}>
-                            ${user.salary}
+                            ${user?.salary}
                         </Typography>
                     </Paper>
                 </Box>
