@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import TextField from '@mui/material/TextField';
 
 const columns = [
     { field: 'emp_id', headerName: 'ID', width: 70, type: 'number' },
@@ -40,7 +41,9 @@ const columns = [
 ];
 
 export function DirectoryUserList() {
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         fetch(`http://localhost:4000/api/users/all`).then(res => res.json()).then((users) => {
@@ -56,16 +59,24 @@ export function DirectoryUserList() {
                     newUsers.push(user)
             })
             setUsers(newUsers)
+            setFilteredUsers(newUsers)
         })
     }, [])
 
+    // Update search / table when filtering
+    useEffect(() => {
+        const filtered = users.filter(user => user.full_name?.toLowerCase().includes(search))
+        setFilteredUsers(filtered)
+    }, [search])
+
     return (
         <>
-            <div style={{ height: '80vh', width: '100%' }}>
+            <div style={{ height: '100%', width: '100%' }}>
+                <TextField id="search-bar" label="Search Employee" variant="standard" sx={{ m: 1 }} onChange={(e) => setSearch(e.target.value)}/>
                 <DataGrid
-                    rows={users}
+                    rows={filteredUsers}
                     columns={columns}
-                    getRowId={(users) => users.emp_id}
+                    getRowId={(filteredUsers) => filteredUsers.emp_id}
                     initialState={{
                         pagination: {
                             paginationModel: { page: 0, pageSize: 10 },

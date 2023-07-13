@@ -23,8 +23,5 @@ export function getAllEmployees(callback) {
 // Get one employees
 export function getEmployee(emp_id, callback) {
     const user = collection.find({}).toArray();
-    user.then((user) => {
-        const selectedUser = user.find(u => u.emp_id === +emp_id);
-        callback(selectedUser);
-    });
+    user.then((user) => callback(user.find(u => u.emp_id === +emp_id) || [{}]));
 }
