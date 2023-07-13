@@ -13,6 +13,6 @@ export function User() {
     }, [id])
 
     return (
-        <ContactCard user={user}/>
+        <ContactCard user={user} />
     )
 }
