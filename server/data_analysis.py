@@ -33,12 +33,12 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 mse = mean_squared_error(y_test,y_pred)
 
-
 # this is to test and see how MSE works
 #tes_pred = [8000,9000,9000,7000]
 #tes_actual = [700,800,800,7000]
 #mse2 = mean_squared_error(tes_pred,tes_actual)
 print('Mean Squared Error:',round(mse,2))
+
 
 
 

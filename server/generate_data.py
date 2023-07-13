@@ -35,7 +35,7 @@ for i in range(1, num_rows+1):
     #print(phone_number)
     job_role = random.choice(["Software Engineer", "Data Engineer", "Business Analyst",
                               "Web Developer","Mechanical Engineer", "Systems Analyst",
-                              "IT Specialist","Data Architect"])
+                              "IT Specialist","Data Architect", "HR"])
     work_location = random.choice(["Hartford", "St.Paul", "Phoenix", "Denver", "Boston"])
     salary = random.randint(65000,110000)
     # for csv
