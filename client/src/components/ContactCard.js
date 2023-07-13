@@ -1,27 +1,22 @@
-import * as React from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
+import { AuthContext } from '../context/AuthContext';
 
 import TravBg from '../images/trav_golf_2.jpg'
 
-export function ContactCard({ user }) {
+export function ContactCard({ user, self }) {
+    const [authState, setAuthState] = useContext(AuthContext)
     const theme = useTheme();
 
     // Defualts
     if(!user) {
-        user = {
-            emp_id: 0,
-            manager_id: 0,
-            full_name: 'Test User',
-            username: 'Test01',
-            phone_number: '(999) 123-4567',
-            job_role: 'Software Engineer',
-            work_location: 'St.Paul',
-            salary: '70000'
-        }
+        user = authState; // Self
+    }else if (self) {
+        user = authState
     }
 
     return (

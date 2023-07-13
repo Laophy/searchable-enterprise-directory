@@ -1,9 +1,9 @@
 import { ContactCard } from '../../components/ContactCard';
 
-export function Contact({ user }) {
+export function Contact({ user, self }) {
     return (
         <div style={{ textAlign: 'center', width: '100%' }}>
-                <ContactCard user={user} />
+                <ContactCard user={user} self/>
         </div>
     )
 }
