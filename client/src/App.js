@@ -35,9 +35,9 @@ export default function App() {
     <ThemeProvider theme={newTheme}>
       <Sidebar content={
           <Routes>
-            <Route path='/' element={<h1>Home</h1>} />
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/home' element={<Dashboard />} />
             <Route path='*' element={<MissingPage />} />
-            <Route path='/home' element={<h1>Home</h1>} />
 
             <Route path='/account/dashboard' element={<Dashboard />} />
             <Route path='/account/overview' element={<Overview />} />
