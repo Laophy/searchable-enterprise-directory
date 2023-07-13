@@ -13,20 +13,32 @@ export function ContactCard({ user, self }) {
     const theme = useTheme();
 
     // Defualts
-    if(!user) {
-        user = {
-            emp_id: 0,
-            manager_id: 0,
-            full_name: 'Logged Out',
-            username: 'null',
-            phone_number: '(000) 000 0000',
-            job_role: 'N/A',
-            work_location: 'N/A',
-            salary: 0
-        }; 
-    }else if (self) {
-        user = authState
+    if(self){
+        if(authState.userIsLoggedin){
+            user = authState;
+        }else{
+            user = {
+                emp_id: 0,
+                manager_id: 0,
+                full_name: 'Logged Out',
+                username: 'null',
+                phone_number: '(000) 000 0000',
+                job_role: 'N/A',
+                work_location: 'N/A',
+                salary: 0
+            }; 
+        }
+    }else{
+        // When browsing another person /users/:id
+        // login data => authState
+        // user => the currently browsed user
+
+        // Looking at a random persons profile => ***, non-manager looking at profile => ***, or your are not an HR
+        if((authState.emp_id !== user.emp_id) && !(authState.emp_id === user.manager_id) && !(authState?.job_role.toLowerCase().includes('hr'))){
+            user.salary = '******';
+        }
     }
+    
 
     return (
         <Paper elevation={6} sx={{ borderRadius: 5 }}>
@@ -112,6 +124,15 @@ export function ContactCard({ user, self }) {
                         <br/>
                         <Typography variant="p" style={{ color: theme.palette.secondary.main }}>
                             ${user?.salary}
+                        </Typography>
+                    </Paper>
+                    <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
+                        <Typography variant="h6" style={{ paddingLeft: 5 }}>
+                            Reports To
+                        </Typography>
+                        <br/>
+                        <Typography variant="p" style={{ color: theme.palette.secondary.main }}>
+                            {user?.manager_id}
                         </Typography>
                     </Paper>
                 </Box>
