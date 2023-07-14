@@ -54,13 +54,13 @@ with open('trained_model.pkl','rb') as file:
 
 # testing getting an input 
 
-data = {'job_role': ['Data Engineer', 'A','B','C','D','E','F','G'], 
-        'work_location': ['Hartford','A','B','C','D','E','E','E']}
-user_data = pd.DataFrame(data)
-user_encoded = pd.get_dummies(user_data)
+#data = {'job_role': ['Data Engineer', 'A','B','C','D','E','F','G'], 
+ #       'work_location': ['Hartford','A','B','C','D','E','E','E']}
+#user_data = pd.DataFrame(data)
+#user_encoded = pd.get_dummies(user_data)
 #salary = model.predict(user_encoded)
-predict = model.predict(user_encoded)
-print('Predicted Salary:', round(predict[0],2))
+#predict = model.predict(user_encoded)
+#print('Predicted Salary:', round(predict[0],2))
 
 
 
