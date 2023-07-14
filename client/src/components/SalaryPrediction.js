@@ -27,7 +27,7 @@ export function SalaryPrediction() {
     setPredictedSalary(data)
   }
   return (
-    <Box sx={{ minWidth: 120, width: '100%' }}>
+    <Box sx={{ minWidth: 300, width: '100%' }}>
       <Box sx={{ width: '50%', display: 'flex-column', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginLeft: 'auto', marginRight: 'auto' }}>
         <Paper elevation={6} sx={{ borderRadius: 5, p: 6 }}>
           <Typography variant="h4">
