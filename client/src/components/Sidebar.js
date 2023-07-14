@@ -243,7 +243,7 @@ export function Sidebar({ content }) {
                                 >
                                     <PieChartIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={'Compensation'} sx={{ opacity: open ? 1 : 0 }} />
+                                <ListItemText primary={'Salary Predictions'} sx={{ opacity: open ? 1 : 0 }} />
                             </ListItemButton>
                         </Link>
                         <Link to="/account/pay" style={linkStyle}>

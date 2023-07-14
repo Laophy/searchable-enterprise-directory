@@ -11,7 +11,7 @@ import { Button } from '@mui/material';
 export function SalaryPrediction() {
     const [jobRole, setJobRole] = React.useState('');
     const [workLocation, setWorkLocation] = React.useState('');
-    const [predictedSalary, setPredictedSalary] = React.useState('')
+    const [predictedSalary, setPredictedSalary] = React.useState('');
 
     function sendPrediction() {
         fetch('http://localhost:4000/api/predict/salary', {
