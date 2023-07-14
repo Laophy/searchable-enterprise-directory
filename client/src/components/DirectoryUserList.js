@@ -6,7 +6,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import TextField from '@mui/material/TextField';
 
 const columns = [
-    { field: 'emp_id', headerName: 'ID', width: 70, type: 'number' },
+    { field: 'emp_id', headerName: 'ID', width: 70 },
     {
         field: 'full_name',
         headerName: 'Full name',

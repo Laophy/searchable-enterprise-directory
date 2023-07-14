@@ -12,11 +12,12 @@ export function ContactCard({ user, self }) {
     const [authState, setAuthState] = useContext(AuthContext)
     const theme = useTheme();
 
+
     // Defualts
-    if(self){
-        if(authState.userIsLoggedin){
+    if (self) {
+        if (authState.userIsLoggedin) {
             user = authState;
-        }else{
+        } else {
             user = {
                 emp_id: 0,
                 manager_id: 0,
@@ -26,19 +27,23 @@ export function ContactCard({ user, self }) {
                 job_role: 'N/A',
                 work_location: 'N/A',
                 salary: 0
-            }; 
+            };
         }
-    }else{
+    } else {
         // When browsing another person /users/:id
         // login data => authState
         // user => the currently browsed user
-
-        // Looking at a random persons profile => ***, non-manager looking at profile => ***, or your are not an HR
-        if((authState.emp_id !== user.emp_id) && !(authState.emp_id === user.manager_id) && !(authState?.job_role.toLowerCase().includes('hr'))){
+        if (!authState.userIsLoggedin) {
             user.salary = '******';
+        } else {
+            // Looking at a random persons profile => ***, non-manager looking at profile => ***, or your are not an HR
+            if (((authState.emp_id !== user.emp_id) && !(authState.emp_id === user.manager_id))) {
+                if (!authState?.job_role.toLowerCase().includes('hr'))
+                    user.salary = '******';
+            }
         }
     }
-    
+
 
     return (
         <Paper elevation={6} sx={{ borderRadius: 5 }}>
@@ -103,7 +108,7 @@ export function ContactCard({ user, self }) {
                         <Typography variant="h6" style={{ paddingLeft: 5 }}>
                             Location
                         </Typography>
-                        <br/>
+                        <br />
                         <Typography variant="p" style={{ color: theme.palette.primary.main }}>
                             {user?.work_location}
                         </Typography>
@@ -112,7 +117,7 @@ export function ContactCard({ user, self }) {
                         <Typography variant="h6" style={{ paddingLeft: 5 }}>
                             Phone
                         </Typography>
-                        <br/>
+                        <br />
                         <Typography variant="p" style={{ color: theme.palette.primary.main }}>
                             {user?.phone_number}
                         </Typography>
@@ -121,7 +126,7 @@ export function ContactCard({ user, self }) {
                         <Typography variant="h6" style={{ paddingLeft: 5 }}>
                             Salary
                         </Typography>
-                        <br/>
+                        <br />
                         <Typography variant="p" style={{ color: theme.palette.secondary.main }}>
                             ${user?.salary}
                         </Typography>
@@ -130,7 +135,7 @@ export function ContactCard({ user, self }) {
                         <Typography variant="h6" style={{ paddingLeft: 5 }}>
                             Reports To
                         </Typography>
-                        <br/>
+                        <br />
                         <Typography variant="p" style={{ color: theme.palette.secondary.main }}>
                             {user?.manager_id}
                         </Typography>
