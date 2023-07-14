@@ -3,7 +3,8 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongodb": "^5.7.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "python-shell": "^5.0.0"
   },
   "name": "directory-backend",
   "type": "module",

@@ -13,14 +13,16 @@ export function SalaryPrediction() {
     const [workLocation, setWorkLocation] = React.useState('');
     const [predictedSalary, setPredictedSalary] = React.useState('')
 
-    function sendPrediction() {
-        fetch('http://localhost:4000/api/predict/salary', {
+    async function sendPrediction() {
+        const res = await fetch('http://localhost:4000/api/predict/salary', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({jobRole})
+            body: JSON.stringify({ jobRole, workLocation })
         })
+        const data = await res.json();
+        setPredictedSalary(data)
     }
     return (
         <Box sx={{ minWidth: 120 }}>
@@ -33,9 +35,15 @@ export function SalaryPrediction() {
                     label="Job Role"
                     onChange={(e) => setJobRole(e.target.value)}
                 >
+                    <MenuItem value={"Software Engineer"}>Software Engineer</MenuItem>
                     <MenuItem value={"Data Engineer"}>Data Engineer</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value={"Business Analyst"}>Business Analyst</MenuItem>
+                    <MenuItem value={"Web Developer"}>Web Developer</MenuItem>
+                    <MenuItem value={"Mechanical Engineer"}>Mechanical Engineer</MenuItem>
+                    <MenuItem value={"Systems Analyst"}>Systems Analyst</MenuItem>
+                    <MenuItem value={"IT Specialist"}>IT Specialist</MenuItem>
+                    <MenuItem value={"Data Architect"}>Data Architect</MenuItem>
+                    <MenuItem value={"HR"}>HR</MenuItem>
                 </Select>
             </FormControl>
             <FormControl fullWidth sx={{ m: 1, mt: 3 }}>
@@ -48,13 +56,16 @@ export function SalaryPrediction() {
                     onChange={(e) => setWorkLocation(e.target.value)}
                 >
                     <MenuItem value={"Hartford"}>Hartford</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    <MenuItem value={"St.Paul"}>St.Paul</MenuItem>
+                    <MenuItem value={"Phoenix"}>Phoenix</MenuItem>
+                    <MenuItem value={"Denver"}>Denver</MenuItem>
+                    <MenuItem value={"Boston"}>Boston</MenuItem>
                 </Select>
             </FormControl>
             <FormControl fullWidth sx={{ m: 1, mt: 3 }}>
                 <button onClick = {()=>sendPrediction()}>Submit</button>
             </FormControl>
+            <p>Predicted Salary: ${predictedSalary?predictedSalary:""}</p>
         </Box>
     );
 }

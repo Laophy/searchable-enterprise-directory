@@ -27,9 +27,36 @@ app.get("/api/users/:id", function (req, res) {
 app.post('/api/predict/salary',(req,res) => {
     const input = req.body
     const data = JSON.stringify(input)
-    const pythonScript = spawn('python',['data_analysis.py'])
-    console.log(input)
-});
+    const pythonScript = spawn('python',['predict_salary.py']);
+    //console.log(input)
+    console.log('inside predict salary')
+
+    //sending data to python
+    pythonScript.stdin.write(data);
+    pythonScript.stdin.end();
+    
+    let predictionNumber ='';
+    //console.log('test')
+    pythonScript.stdout.on('data',(data) => {
+        console.log('inside standard out', data.toString())
+        predictionNumber +=data.toString();
+    });
+    pythonScript.stderr.on('data',(data) => {
+        console.log("There was a problem", data.toString())
+    })
+    
+    //console.log('test')
+    pythonScript.on('close',(code)=> {
+        console.log(predictionNumber)
+        if (code===0) {
+            res.json(predictionNumber)
+        }
+        else {
+            res.status(55).json({error: 'Prediction not successful'})
+        }
+    })
+
+ });
 
 app.use(express.static('./public'))
 
