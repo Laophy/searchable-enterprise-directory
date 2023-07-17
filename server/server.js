@@ -25,17 +25,17 @@ app.get("/api/users/:id", function (req, res) {
 });
 
 app.post('/api/predict/salary',(req,res) => {
+    // getting the data from React and stringifying it
     const input = req.body
     const data = JSON.stringify(input)
     const pythonScript = spawn('python',['predict_salary.py']);
-    //console.log(input)
 
     //sending data to python
     pythonScript.stdin.write(data);
     pythonScript.stdin.end();
     
     let predictionNumber ='';
-    //console.log('test')
+
     pythonScript.stdout.on('data',(data) => {
         predictionNumber +=data.toString();
     });
