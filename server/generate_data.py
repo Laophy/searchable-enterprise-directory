@@ -37,7 +37,16 @@ for i in range(1, num_rows+1):
                               "Web Developer","Mechanical Engineer", "Systems Analyst",
                               "IT Specialist","Data Architect", "HR"])
     work_location = random.choice(["Hartford", "St.Paul", "Phoenix", "Denver", "Boston"])
-    salary = random.randint(65000,110000)
+    if work_location == "Denver":
+        salary = random.randint(80000,100000)
+    elif work_location == "Harford":
+        salary = random.randint(80000,110000)
+    elif work_location == "Boston":
+        salary = random.randint(90000,120000)
+    elif work_location == "Phoenix":
+        salary = random.randint(60000,80000)
+    else:
+        salary = random.randint(75000,100000)
     # for csv
     data_row = [
         emp_id,
