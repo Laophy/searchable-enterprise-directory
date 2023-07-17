@@ -37,30 +37,17 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 mse = mean_squared_error(y_test,y_pred)
 
-#salary = model.predict('Data Engineer', 'Hartford')
-# this is to test and see how MSE works
-#tes_pred = [8000,9000,9000,7000]
-#tes_actual = [700,800,800,7000]
-#mse2 = mean_squared_error(tes_pred,tes_actual)
 print('Mean Squared Error:',round(mse,2))
 
 # dumping it to a pickle 
 with open('trained_model.pkl','wb') as file:
     pickle.dump(model,file)
-#print(y_pred[0])
 
 with open('trained_model.pkl','rb') as file:
     pickle.load(file)
 
-# testing getting an input 
 
-#data = {'job_role': ['Data Engineer', 'A','B','C','D','E','F','G'], 
- #       'work_location': ['Hartford','A','B','C','D','E','E','E']}
-#user_data = pd.DataFrame(data)
-#user_encoded = pd.get_dummies(user_data)
-#salary = model.predict(user_encoded)
-#predict = model.predict(user_encoded)
-#print('Predicted Salary:', round(predict[0],2))
+
 
 
 

@@ -15,7 +15,7 @@ job_location = data['workLocation']
 
 #print(data[0])
 
-data = {'job_role': [job_role, 'A','B','C','D','E','F','G'], 'work_location': [job_location,'A','B','C','D','E','E','E']}
+data = {'job_role': [job_role, 'A','B','C','D','E','F'], 'work_location': [job_location,'A','B','C','D','E','F']}
 user_data = pd.DataFrame(data)
 user_encoded = pd.get_dummies(user_data)
 #salary = model.predict(user_encoded)
