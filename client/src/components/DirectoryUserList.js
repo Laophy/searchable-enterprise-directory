@@ -5,6 +5,15 @@ import { Link } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import TextField from '@mui/material/TextField';
 
+function formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+    return null;
+}
+
 const columns = [
     { field: 'emp_id', headerName: 'ID', width: 70 },
     {
@@ -26,6 +35,7 @@ const columns = [
         field: 'phone_number',
         headerName: 'Phone',
         width: 130,
+        renderCell: (params) => <p>{formatPhoneNumber(params.row.phone_number)}</p>
     },
     {
         field: 'manager_name',

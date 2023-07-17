@@ -44,6 +44,15 @@ export function ContactCard({ user, self }) {
         }
     }
 
+    function formatPhoneNumber(phoneNumberString) {
+        var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+        var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+        if (match) {
+          return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+        }
+        return null;
+    }
+
 
     return (
         <Paper elevation={6} sx={{ borderRadius: 5 }}>
@@ -119,7 +128,7 @@ export function ContactCard({ user, self }) {
                         </Typography>
                         <br />
                         <Typography variant="p" style={{ color: theme.palette.primary.main }}>
-                            {user?.phone_number}
+                            {formatPhoneNumber(user?.phone_number)}
                         </Typography>
                     </Paper>
                     <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
@@ -128,7 +137,7 @@ export function ContactCard({ user, self }) {
                         </Typography>
                         <br />
                         <Typography variant="p" style={{ color: theme.palette.secondary.main }}>
-                            ${user?.salary}
+                            ${user?.salary?.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}
                         </Typography>
                     </Paper>
                     <Paper elevation={6} sx={{ borderRadius: 5, margin: 1, padding: 1, width: '25%' }}>
